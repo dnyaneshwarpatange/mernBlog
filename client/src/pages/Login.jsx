@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { Input, Stack, Button } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext.jsx'; // Ensure the path is correct
 
@@ -48,29 +47,32 @@ const Login = () => {
     };
 
     return (
-        <div className="loginpage">
+        <div className="loginpage flex w-[100vw] h-[90vh] justify-center items-center flex-col">
             <div className="loginpageup">
-                <h1>Sign In</h1>
+                <h1 className="text-2xl text-antiquewhite pb-8">Sign In</h1>
             </div>
             <div className="loginpagedown">
-                <Stack spacing={3} as="form" onSubmit={handleLogin}>
-                    <Input
-                        placeholder='Enter your email'
-                        size='sm'
-                        name='email'
+                <form onSubmit={handleLogin} className="flex flex-col items-center space-y-4">
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        name="email"
                         value={user.email}
                         onChange={handleInput}
+                        className="w-[30vw] p-2 bg-antiquewhite rounded"
                     />
-                    <Input
-                        type='password'
-                        placeholder='Enter your password'
-                        size='sm'
-                        name='password'
+                    <input
+                        type="password"
+                        placeholder="Enter your password"
+                        name="password"
                         value={user.password}
                         onChange={handleInput}
+                        className="w-[30vw] p-2 bg-antiquewhite rounded"
                     />
-                    <Button type='submit' className="createaccountbutton" colorScheme='green'>Sign In</Button>
-                </Stack>
+                    <button type="submit" className="createaccountbutton w-[4rem] p-2 bg-green-500 text-white rounded">
+                        Sign In
+                    </button>
+                </form>
             </div>
         </div>
     );
