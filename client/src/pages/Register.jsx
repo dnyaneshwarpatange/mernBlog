@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { Input, Stack } from '@chakra-ui/react';
-import { Button } from '@chakra-ui/react';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -28,7 +26,7 @@ const Register = () => {
       const response = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
       });
@@ -41,7 +39,7 @@ const Register = () => {
         });
         navigate("/login");
       } else {
-        console.error('Registration failed');
+        console.error("Registration failed");
       }
     } catch (error) {
       console.error(error);
@@ -49,39 +47,47 @@ const Register = () => {
   };
 
   return (
-    <div className="loginpage">
-      <div className="loginpageup">
-        <h1>Create Account</h1>
+    <div className="registerpage flex w-[100vw] h-[90vh] justify-center items-center flex-col">
+      <div className="registerpageup">
+        <h1 className="text-2xl text-antiquewhite pb-8">Create Account</h1>
       </div>
-      <div className="loginpagedown">
-        <Stack spacing={3} as="form" onSubmit={handleSubmit}>
-          <Input
+      <div className="registerpagedown">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center space-y-4"
+        >
+          <input
             name="username"
             value={user.username}
             onChange={handleInput}
-            placeholder='Enter your username'
-            size='sm'
+            placeholder="Enter your username"
+            className="w-[30vw] p-2 bg-antiquewhite rounded"
           />
-          <Input
+          <input
             name="email"
             value={user.email}
             onChange={handleInput}
-            placeholder='Enter your email'
-            size='sm'
+            placeholder="Enter your email"
+            className="w-[30vw] p-2 bg-antiquewhite rounded"
           />
-          <Input
+          <input
             name="password"
-            type='password'
+            type="password"
             value={user.password}
             onChange={handleInput}
-            placeholder='Enter your password'
-            size='sm'
+            placeholder="Enter your password"
+            className="w-[30vw] p-2 bg-antiquewhite rounded"
           />
-          <Button className="createaccountbutton" type="submit" colorScheme='green'>Create</Button>
-        </Stack>
+          <button
+            type="submit"
+            className="createaccountbutton w-[4rem] p-2 bg-green-500 text-white rounded"
+          >
+            Create
+          </button>
+        </form>
       </div>
     </div>
   );
-}
+};
 
 export default Register;
